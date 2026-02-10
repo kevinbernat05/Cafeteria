@@ -37,7 +37,7 @@ if (isset($_SESSION['cart'])) {
                     <li><a href="index.php">Home</a></li>
                     <li><a href="menu.php">Menu</a></li>
                     <li><a href="contact.php">Contact</a></li>
-                    <li>
+                    <li></li>
                         <a href="cart.php" class="cart-icon">
                             Cart
                             <?php if ($cartCount > 0): ?>

@@ -376,3 +376,93 @@ footer {
         gap: 1.5rem;
     }
 }
+
+/* Menu Sections & Carousel */
+.menu-section {
+    margin-bottom: 3rem;
+    padding-left: 1rem;
+    /* alignment visual */
+}
+
+.section-title {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    padding-left: 0.5rem;
+    border-left: 4px solid var(--accent-color);
+    line-height: 1;
+}
+
+.carousel-container {
+    display: flex;
+    overflow-x: auto;
+    gap: 1.5rem;
+    padding: 1rem 0.5rem 2rem 0.5rem;
+    /* bottom padding for shadow */
+    scroll-snap-type: x mandatory;
+    /* Keep snap for momentum, but JS might override or work with it */
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+
+    /* Hide scrollbar */
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* IE 10+ */
+
+    cursor: grab;
+    /* Mouse cursor indicates draggable */
+    user-select: none;
+    /* Prevent text selection while dragging */
+}
+
+.carousel-container::-webkit-scrollbar {
+    display: none;
+    /* Chrome/Safari/Webkit */
+}
+
+/* Class added by JS when dragging */
+.carousel-container.active {
+    cursor: grabbing;
+    scroll-snap-type: none;
+    /* Disable snap while dragging for smoother feel */
+    scroll-behavior: auto;
+    /* Disable smooth scroll for instant following */
+}
+
+.carousel-card {
+    min-width: 240px;
+    max-width: 240px;
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+    margin-bottom: 0;
+    /* Override grid margin */
+    pointer-events: none;
+    /* Prevent images/text inside from interfering with drag? No, this might break buttons. */
+}
+
+/* Re-enable pointer events for interactive elements inside card */
+.carousel-card form,
+.carousel-card button,
+.carousel-card a {
+    pointer-events: auto;
+}
+
+.carousel-card .product-image {
+    height: 160px;
+    /* Smaller image */
+    pointer-events: none;
+    /* Prevent image dragging behavior */
+}
+
+.carousel-card .product-title {
+    font-size: 1.2rem;
+}
+
+.carousel-card .product-info {
+    padding: 1rem;
+}
+
+.carousel-card .price {
+    font-size: 1.1rem;
+}

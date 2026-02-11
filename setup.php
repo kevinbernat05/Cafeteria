@@ -25,6 +25,16 @@ try {
     )";
     $db->exec($ordersTable);
 
+    // Create Users Table
+    $usersTable = "CREATE TABLE IF NOT EXISTS users (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        username TEXT NOT NULL UNIQUE,
+        email TEXT NOT NULL UNIQUE,
+        password TEXT NOT NULL,
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    )";
+    $db->exec($usersTable);
+
     // Seed Products
     $result = $db->query("SELECT COUNT(*) as count FROM products");
     $row = $result->fetch();

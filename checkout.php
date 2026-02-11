@@ -56,18 +56,18 @@ if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
 
 <div class="container text-center" style="padding: 4rem 0;">
     <?php if ($message === "Thank you for your order!"): ?>
-        <h1 style="color: var(--success-color); margin-bottom: 2rem; font-size: 3rem;">Order Confirmed!</h1>
+        <h1 style="color: var(--success-color); margin-bottom: 2rem; font-size: 3rem;">Pedido Confirmada!</h1>
         <p style="font-size: 1.5rem; color: var(--text-color); margin-bottom: 2rem;">
-            Your coffee is being brewed. <br>
-            Please proceed to the counter when your name is called.
+            Tu café está siendo preparado. <br>
+            Por favor, procede al mostrador cuando se llama tu nombre.
         </p>
-        <a href="index.php" class="btn btn-secondary">Back to Home</a>
+        <a href="index.php" class="btn btn-secondary">Volver al Inicio</a>
     <?php else: ?>
         <h1 style="color: var(--accent-color); margin-bottom: 2rem;">Opps!</h1>
         <p style="font-size: 1.2rem; margin-bottom: 2rem;">
             <?php echo $message; ?>
         </p>
-        <a href="menu.php" class="btn">Return to Menu</a>
+        <a href="menu.php" class="btn">Volver al Menu</a>
     <?php endif; ?>
 </div>
 

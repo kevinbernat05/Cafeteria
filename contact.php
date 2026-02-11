@@ -11,21 +11,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <div class="container">
     <section class="contact-header text-center mt-2 mb-2">
-        <h1 style="color: var(--primary-color);">Contact Us</h1>
-        <p style="color: var(--muted-text);">We'd love to hear from you. Send us a message!</p>
+        <h1 style="color: var(--primary-color);">Contacta con nosotros</h1>
+        <p style="color: var(--muted-text);">Nos encantaría escuchar de ti. Envíanos un mensaje!</p>
     </section>
 
     <div class="contact-form-container text-center mb-2">
         <?php if ($messageSent): ?>
             <div
                 style="background-color: rgba(42, 157, 143, 0.2); border: 1px solid var(--success-color); color: var(--success-color); padding: 1rem; border-radius: var(--border-radius); max-width: 600px; margin: 0 auto;">
-                <strong>Message Sent!</strong> Thank you for contacting us. We will get back to you shortly.
+                <strong>¡Mensaje Enviado!</strong> Gracias por contactarnos. Te contactaremos pronto.
             </div>
         <?php else: ?>
             <form action="contact.php" method="post" style="max-width: 600px; margin: 0 auto; text-align: left;">
                 <div class="mb-2">
                     <label for="name"
-                        style="display: block; margin-bottom: 0.5rem; color: var(--secondary-color);">Name</label>
+                        style="display: block; margin-bottom: 0.5rem; color: var(--secondary-color);">Nombre</label>
                     <input type="text" id="name" name="name" required
                         style="width: 100%; padding: 0.75rem; border-radius: var(--border-radius); border: 1px solid #444; background: var(--surface-color); color: white;">
                 </div>
@@ -39,12 +39,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 <div class="mb-2">
                     <label for="message"
-                        style="display: block; margin-bottom: 0.5rem; color: var(--secondary-color);">Message</label>
+                        style="display: block; margin-bottom: 0.5rem; color: var(--secondary-color);">Mensaje</label>
                     <textarea id="message" name="message" rows="5" required
                         style="width: 100%; padding: 0.75rem; border-radius: var(--border-radius); border: 1px solid #444; background: var(--surface-color); color: white;"></textarea>
                 </div>
 
-                <button type="submit" class="btn" style="width: 100%;">Send Message</button>
+                <button type="submit" class="btn" style="width: 100%;">Enviar Mensaje</button>
             </form>
         <?php endif; ?>
     </div>

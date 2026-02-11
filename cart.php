@@ -1,6 +1,10 @@
 <?php
 require_once 'db.php';
-include 'header.php';
+
+// Start session if not already started (needed for cart logic)
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 
 // Handle Actions
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -14,6 +18,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
             $_SESSION['cart'][$productId] = 1;
         }
+
+        if (isset($_POST['ajax'])) {
+            $count = 0;
+            foreach ($_SESSION['cart'] as $qty) {
+                $count += $qty;
+            }
+            // Clear buffer to ensure no whitespace/output before JSON
+            ob_clean(); 
+            header('Content-Type: application/json');
+            echo json_encode(['status' => 'success', 'cartCount' => $count, 'message' => 'Added to cart']);
+            exit;
+        }
+
         // Redirect to prevent form resubmission
         header('Location: cart.php');
         exit;
@@ -44,34 +61,36 @@ $cartItems = [];
 $total = 0;
 if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
     $db = new Database();
-    $ids = implode(',', array_keys($_SESSION['cart']));
-    // Warning: Direct interpolation of IDs is risky without sanitization if keys were not integers. 
-    // Since they come from DB IDs which are ints, and we trust our internal logic (mostly), 
-    // but for extra safety let's assume keys are safe or use prepared statement with IN clause (complex to bind dynamic array).
-    // For this demo, valid integer keys are assumed.
-
-    // Better approach:
-    $placeholders = str_repeat('?,', count($_SESSION['cart']) - 1) . '?';
+    
+    // START: Secure way to handle IN clause
+    $ids = array_keys($_SESSION['cart']);
+    $placeholders = str_repeat('?,', count($ids) - 1) . '?';
     $stmt = $db->prepare("SELECT * FROM products WHERE id IN ($placeholders)");
-    $stmt->execute(array_keys($_SESSION['cart']));
+    $stmt->execute($ids);
     $products = $stmt->fetchAll();
+    // END: Secure way to handle IN clause
 
     foreach ($products as $product) {
-        $product['quantity'] = $_SESSION['cart'][$product['id']];
-        $product['subtotal'] = $product['price'] * $product['quantity'];
-        $total += $product['subtotal'];
-        $cartItems[] = $product;
+        if (isset($_SESSION['cart'][$product['id']])) {
+             $product['quantity'] = $_SESSION['cart'][$product['id']];
+             $product['subtotal'] = $product['price'] * $product['quantity'];
+             $total += $product['subtotal'];
+             $cartItems[] = $product;
+        }
     }
 }
+
+// Include header only after logic and potential redirects/AJAX exits
+include 'header.php';
 ?>
 
 <div class="container">
-    <h1 class="text-center mt-2 mb-2" style="color: var(--primary-color);">Your Shopping Cart</h1>
+    <h1 class="text-center mt-2 mb-2" style="color: var(--primary-color);">Tu Carrito de Compras</h1>
 
     <?php if (empty($cartItems)): ?>
         <div class="text-center mb-2">
-            <p style="font-size: 1.2rem; margin-bottom: 2rem;">Your cart is empty.</p>
-            <a href="menu.php" class="btn">Browse Menu</a>
+            <p style="font-size: 1.2rem; margin-bottom: 2rem;">Tu carrito está vacío.</p>
+            <a href="menu.php" class="btn">Ver Menú</a>
         </div>
         <!-- Spacer to push footer down if cart is empty -->
         <div style="height: 200px;"></div>
@@ -79,11 +98,11 @@ if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
         <table class="cart-table">
             <thead>
                 <tr>
-                    <th>Product</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
+                    <th>Producto</th>
+                    <th>Precio</th>
+                    <th>Cantidad</th>
                     <th>Total</th>
-                    <th>Action</th>
+                    <th>Acción</th>
                 </tr>
             </thead>
             <tbody>

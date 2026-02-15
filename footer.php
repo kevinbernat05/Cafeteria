@@ -2,9 +2,9 @@
 <footer>
     <div class="container">
         <p>&copy;
-            <?php echo date('Y'); ?> Espresso Elegance. All rights reserved.
+            <?php echo date('Y'); ?> Sweet Bean. Todos los derechos reservados.
         </p>
-        <p>Brewed with passion and PHP.</p>
+        <p>Hecho con pasión y PHP.</p>
     </div>
 </footer>
 </body>

@@ -8,11 +8,11 @@ $orderId = null;
 if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
     $db = new Database();
 
-    // Calculate total and prepare items for storage
+    // Calcular total y preparar ítems para almacenamiento
     $total = 0;
     $items = [];
 
-    // Fetch product details
+    // Obtener detalles del producto
     $placeholders = str_repeat('?,', count($_SESSION['cart']) - 1) . '?';
     $stmt = $db->prepare("SELECT * FROM products WHERE id IN ($placeholders)");
     $stmt->execute(array_keys($_SESSION['cart']));
@@ -31,10 +31,10 @@ if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
         ];
     }
 
-    // Insert Order
+    // Insertar Pedido
     try {
         $stmt = $db->prepare("INSERT INTO orders (customer_name, total_amount, items) VALUES (:name, :total, :items)");
-        // For this demo, we'll use a placeholder name or "Guest" since we don't have auth
+        // Para esta demo, usaremos un nombre temporal o "Invitado" ya que no tenemos autenticación
         $name = "Guest User";
         $itemsJson = json_encode($items);
 
@@ -43,7 +43,7 @@ if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
         $stmt->bindParam(':items', $itemsJson);
         $stmt->execute();
 
-        // Clear Cart
+        // Limpiar Carrito
         unset($_SESSION['cart']);
         $message = "Thank you for your order!";
     } catch (Exception $e) {

@@ -1,12 +1,12 @@
 <?php
 require_once 'db.php';
 
-// Start session if not already started (needed for cart logic)
+// Iniciar sesión si no está ya iniciada (necesario para la lógica del carrito)
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-// Handle Actions
+// Manejar Acciones
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['action']) && $_POST['action'] === 'add') {
         $productId = $_POST['product_id'];
@@ -24,14 +24,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             foreach ($_SESSION['cart'] as $qty) {
                 $count += $qty;
             }
-            // Clear buffer to ensure no whitespace/output before JSON
-            ob_clean(); 
+            // Limpiar búfer para asegurar que no haya espacios en blanco/salida antes del JSON
+            ob_clean();
             header('Content-Type: application/json');
             echo json_encode(['status' => 'success', 'cartCount' => $count, 'message' => 'Added to cart']);
             exit;
         }
 
-        // Redirect to prevent form resubmission
+        // Redirigir para prevenir reenvío del formulario
         header('Location: cart.php');
         exit;
     }
@@ -56,31 +56,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-// Fetch Cart Details
+// Obtener Detalles del Carrito
 $cartItems = [];
 $total = 0;
 if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
     $db = new Database();
-    
-    // START: Secure way to handle IN clause
+
+    // INICIO: Forma segura de manejar cláusula IN
     $ids = array_keys($_SESSION['cart']);
     $placeholders = str_repeat('?,', count($ids) - 1) . '?';
     $stmt = $db->prepare("SELECT * FROM products WHERE id IN ($placeholders)");
     $stmt->execute($ids);
     $products = $stmt->fetchAll();
-    // END: Secure way to handle IN clause
+    // FIN: Forma segura de manejar cláusula IN
 
     foreach ($products as $product) {
         if (isset($_SESSION['cart'][$product['id']])) {
-             $product['quantity'] = $_SESSION['cart'][$product['id']];
-             $product['subtotal'] = $product['price'] * $product['quantity'];
-             $total += $product['subtotal'];
-             $cartItems[] = $product;
+            $product['quantity'] = $_SESSION['cart'][$product['id']];
+            $product['subtotal'] = $product['price'] * $product['quantity'];
+            $total += $product['subtotal'];
+            $cartItems[] = $product;
         }
     }
 }
 
-// Include header only after logic and potential redirects/AJAX exits
+// Incluir encabezado solo después de la lógica y posibles redirecciones/salidas AJAX
 include 'header.php';
 ?>
 
@@ -92,7 +92,7 @@ include 'header.php';
             <p style="font-size: 1.2rem; margin-bottom: 2rem;">Tu carrito está vacío.</p>
             <a href="menu.php" class="btn">Ver Menú</a>
         </div>
-        <!-- Spacer to push footer down if cart is empty -->
+        <!-- Espaciador para empujar el pie de página hacia abajo si el carrito está vacío -->
         <div style="height: 200px;"></div>
     <?php else: ?>
         <table class="cart-table">

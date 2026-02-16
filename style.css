@@ -1,21 +1,21 @@
-/* Global Styles */
+/* Estilos Globales */
 :root {
     --primary-color: #ff8fa3;
-    /* Soft Pink */
+    /* Rosa Suave */
     --secondary-color: #4a3b40;
-    /* Darker Surface for contrast */
+    /* Superficie más oscura para contraste */
     --background-color: #2b1d22;
-    /* Dark Deep Raisin */
+    /* Pasa Oscura Profunda */
     --surface-color: #38292e;
-    /* Slightly lighter dark */
+    /* Oscuro ligeramente más claro */
     --text-color: #ffe6ea;
-    /* Very light pink/white */
+    /* Rosa/blanco muy claro */
     --muted-text: #d6aeb6;
-    /* Pinkish Grey */
+    /* Gris Rosáceo */
     --accent-color: #ff4d6d;
-    /* Deep Pink/Red */
+    /* Rosa/Rojo Profundo */
     --success-color: #a8e6cf;
-    /* Mint Green */
+    /* Verde Menta */
     --font-heading: 'Playfair Display', serif;
     --font-body: 'Lato', sans-serif;
     --transition-speed: 0.3s;
@@ -59,7 +59,7 @@ img {
     border-radius: var(--border-radius);
 }
 
-/* Typography */
+/* Tipografía */
 h1,
 h2,
 h3,
@@ -84,14 +84,14 @@ h3 {
     font-size: 1.75rem;
 }
 
-/* Container */
+/* Contenedor */
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 2rem;
 }
 
-/* Header */
+/* Encabezado */
 header {
     background-color: rgba(43, 29, 34, 0.95);
     backdrop-filter: blur(10px);
@@ -172,13 +172,13 @@ nav a:hover::after {
     line-height: 1;
 }
 
-/* Main Content */
+/* Contenido Principal */
 main {
     flex: 1;
     padding: 3rem 0;
 }
 
-/* Hero Section */
+/* Sección Hero */
 .hero {
     text-align: center;
     padding: 6rem 0;
@@ -233,7 +233,7 @@ main {
     color: var(--background-color);
 }
 
-/* Products Content */
+/* Contenido de Productos */
 .products-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -269,7 +269,7 @@ main {
 
 .product-card:hover .product-image img {
     transform: scale(1.05);
-    /* subtle zoom on hover */
+    /* zoom sutil al pasar el mouse */
 }
 
 .product-info {
@@ -310,7 +310,7 @@ main {
     font-size: 0.9rem;
 }
 
-/* Cart Table */
+/* Tabla del Carrito */
 .cart-table {
     width: 100%;
     border-collapse: collapse;
@@ -347,7 +347,7 @@ main {
     color: var(--text-color);
 }
 
-/* Footer */
+/* Pie de página */
 footer {
     background-color: var(--surface-color);
     padding: 2rem 0;
@@ -357,7 +357,7 @@ footer {
     border-top: 1px solid rgba(255, 143, 163, 0.2);
 }
 
-/* Utilities */
+/* Utilidades */
 .text-center {
     text-align: center;
 }
@@ -370,7 +370,7 @@ footer {
     margin-top: 2rem;
 }
 
-/* Responsive */
+/* Responsivo */
 @media (max-width: 768px) {
     .container {
         padding: 0 1rem;
@@ -390,11 +390,11 @@ footer {
     }
 }
 
-/* Menu Sections & Carousel */
+/* Secciones del Menú y Carrusel */
 .menu-section {
     margin-bottom: 3rem;
     padding-left: 1rem;
-    /* alignment visual */
+    /* alineación visual */
 }
 
 .section-title {
@@ -411,22 +411,22 @@ footer {
     overflow-x: auto;
     gap: 1.5rem;
     padding: 1rem 0.5rem 2rem 0.5rem;
-    /* bottom padding for shadow */
+    /* relleno inferior para la sombra */
     scroll-snap-type: x mandatory;
-    /* Keep snap for momentum, but JS might override or work with it */
+    /* Mantener snap para impulso, pero JS podría anularlo o trabajar con él */
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
 
-    /* Hide scrollbar */
+    /* Ocultar barra de desplazamiento */
     scrollbar-width: none;
     /* Firefox */
     -ms-overflow-style: none;
     /* IE 10+ */
 
     cursor: grab;
-    /* Mouse cursor indicates draggable */
+    /* El cursor del mouse indica arrastrable */
     user-select: none;
-    /* Prevent text selection while dragging */
+    /* Prevenir selección de texto al arrastrar */
 }
 
 .carousel-container::-webkit-scrollbar {
@@ -434,13 +434,13 @@ footer {
     /* Chrome/Safari/Webkit */
 }
 
-/* Class added by JS when dragging */
+/* Clase agregada por JS al arrastrar */
 .carousel-container.active {
     cursor: grabbing;
     scroll-snap-type: none;
-    /* Disable snap while dragging for smoother feel */
+    /* Desactivar snap al arrastrar para una sensación más suave */
     scroll-behavior: auto;
-    /* Disable smooth scroll for instant following */
+    /* Desactivar desplazamiento suave para seguimiento instantáneo */
 }
 
 .carousel-card {
@@ -449,12 +449,12 @@ footer {
     flex: 0 0 auto;
     scroll-snap-align: start;
     margin-bottom: 0;
-    /* Override grid margin */
+    /* Anular margen de grid */
     pointer-events: none;
-    /* Prevent images/text inside from interfering with drag? No, this might break buttons. */
+    /* ¿Prevenir que imágenes/texto dentro interfieran con el arrastre? No, esto podría romper botones. */
 }
 
-/* Re-enable pointer events for interactive elements inside card */
+/* Re-habilitar eventos de puntero para elementos interactivos dentro de la tarjeta */
 .carousel-card form,
 .carousel-card button,
 .carousel-card a {
@@ -463,9 +463,9 @@ footer {
 
 .carousel-card .product-image {
     height: 160px;
-    /* Smaller image */
+    /* Imagen más pequeña */
     pointer-events: none;
-    /* Prevent image dragging behavior */
+    /* Prevenir comportamiento de arrastre de imagen */
 }
 
 .carousel-card .product-title {
@@ -479,7 +479,8 @@ footer {
 .carousel-card .price {
     font-size: 1.1rem;
 }
-/* Auth Forms */
+
+/* Formularios de Autenticación */
 .auth-form-container {
     background-color: var(--surface-color);
     padding: 2rem;
@@ -556,7 +557,7 @@ footer {
     color: var(--success-color);
 }
 
-/* Modal Styles */
+/* Estilos del Modal */
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -642,7 +643,7 @@ footer {
     margin-top: 2rem;
 }
 
-/* Toast Notifications */
+/* Notificaciones Toast */
 #toast-container {
     position: fixed;
     bottom: 2rem;
@@ -658,7 +659,7 @@ footer {
     color: var(--text-color);
     padding: 1rem 1.5rem;
     border-radius: var(--border-radius);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
     display: flex;
     align-items: center;
     gap: 1rem;

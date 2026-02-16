@@ -12,7 +12,7 @@
     <section class="featured-products mb-2">
         <h2 class="text-center mb-2" style="color: var(--primary-color);">Productos Destacados</h2>
         <div class="products-grid">
-            <!-- Hardcoded featured items for display, or fetch from DB if available -->
+            <!-- Productos destacados codificados para visualización, o obtener de la BD si está disponible -->
             <div class="product-card">
                 <div class="product-image">
                     <img src="https://images.unsplash.com/photo-1510707577719-ae7c14805e3a?w=500&auto=format&fit=crop&q=60"
@@ -62,7 +62,8 @@
         <h2 style="color: var(--primary-color);">Nuestra historia</h2>
         <p style="max-width: 800px; margin: 0 auto; color: var(--muted-text);">
             Sweet bean fué fundada en 2020 por Ana y Kevin, quienes tras años de viajar por Europa y Asia, decidieron
-            abrir su primer cafetería en Madrid. Desde entonces, han estado comprometidos con ofrecer la mejor experiencia
+            abrir su primer cafetería en Madrid. Desde entonces, han estado comprometidos con ofrecer la mejor
+            experiencia
             en cada taza de café. Su objetivo es que cada cliente se quede con una sonrisa en la cara y un café que le
             haga sentir como en casa.
         </p>

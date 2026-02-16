@@ -2,23 +2,23 @@
 require_once 'db.php';
 session_start();
 
-// Access Control
+// Control de Acceso
 if (!isset($_SESSION['username']) || strtolower($_SESSION['username']) !== 'kevin') {
     die("Access Denied");
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id = intval($_POST['id']);
-    
+
     if ($id > 0) {
         try {
             $db = new Database();
-            // Optional: Get image path to delete file if we wanted to be thorough, but for now just DB delete
+            // Opcional: Obtener ruta de imagen para borrar archivo si quisiéramos ser exhaustivos, pero por ahora solo borrado en BD
             $stmt = $db->prepare("DELETE FROM products WHERE id = :id");
             $stmt->bindValue(':id', $id);
             $stmt->execute();
-            
-            // Redirect back to menu with success param (could be used for toast if we implemented reading GET params for toasts)
+
+            // Redirigir al menú con parámetro de éxito (podría usarse para toast si implementáramos lectura de params GET para toasts)
             header("Location: menu.php?deleted=true");
             exit;
         } catch (Exception $e) {

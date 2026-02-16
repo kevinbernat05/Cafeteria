@@ -3,8 +3,8 @@ include 'header.php';
 
 $messageSent = false;
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // In a real application, you would send an email or save to DB here.
-    // For now, we just show a success message.
+    // En una aplicación real, enviarías un correo electrónico o guardarías en la BD aquí.
+    // Por ahora, solo mostramos un mensaje de éxito.
     $messageSent = true;
 }
 ?>

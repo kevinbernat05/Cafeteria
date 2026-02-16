@@ -4,7 +4,7 @@ require_once 'db.php';
 $db = new Database();
 
 try {
-    // Create Products Table
+    // Crear Tabla de Productos
     $productsTable = "CREATE TABLE IF NOT EXISTS products (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         name TEXT NOT NULL,
@@ -15,7 +15,7 @@ try {
     )";
     $db->exec($productsTable);
 
-    // Create Orders Table
+    // Crear Tabla de Pedidos
     $ordersTable = "CREATE TABLE IF NOT EXISTS orders (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         customer_name TEXT,
@@ -25,7 +25,7 @@ try {
     )";
     $db->exec($ordersTable);
 
-    // Create Users Table
+    // Crear Tabla de Usuarios
     $usersTable = "CREATE TABLE IF NOT EXISTS users (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         username TEXT NOT NULL UNIQUE,
@@ -35,7 +35,7 @@ try {
     )";
     $db->exec($usersTable);
 
-    // Seed Products
+    // Sembrar Productos (Datos iniciales)
     $result = $db->query("SELECT COUNT(*) as count FROM products");
     $row = $result->fetch();
 
